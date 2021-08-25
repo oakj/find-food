@@ -1,0 +1,5 @@
+.results-map-container {
+    border: solid blue;
+    /*flexbox properties relative to parent*/
+    height: 100%;
+}

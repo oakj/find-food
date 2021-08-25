@@ -1,3 +1,13 @@
+.logo-container {
+    /*flexbox properties relative to parent*/
+    flex: 1;
+    /*flexbox properties of this component*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .logo {
     width: 250px;
     height: 70px;

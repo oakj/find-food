@@ -11,16 +11,13 @@ export default function Search() {
     }
 
     return (
-        <section>
-            <h3>Hello I am Search</h3>
-            <div className="search-container">
+        <section className='search-container'>
                 <div className="search-box">
                     <img className="search-img" src={magnify} alt="magnifying-glass"/>
                     <form onSubmit={handleSubmit}>
                         <input className="search-input" value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="input an address"/>
                     </form>
                 </div>
-            </div>
         </section>
     );
 }

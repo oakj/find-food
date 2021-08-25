@@ -1,11 +1,11 @@
 import React from 'react';
 import Logo from './Logo.jsx';
 import Search from './Search.jsx';
+import styles from '../styles/ResultsHeader.css';
 
 export default function ResultsHeader() {
     return (
-        <section>
-            <h3>Hello I am ResultsHeader</h3>
+        <section className='results-header-container'>
             <Logo />
             <Search />
         </section>

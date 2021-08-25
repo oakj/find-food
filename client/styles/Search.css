@@ -1,3 +1,15 @@
 .search-container {
     background-color: orange;
+    /*flexbox properties relative to parent*/
+    flex: 4;
+    /*flexbox properties of this component*/
+    display: flex;
+    flex-direction: row;
+
+    max-width: 600px;
+    margin-right: 200px;
+}
+
+.search-box {
+
 }

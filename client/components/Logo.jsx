@@ -4,8 +4,7 @@ import styles from '../styles/Logo.css';
 
 export default function Logo() {
     return (
-        <section>
-            <h3>Hello I am Logo</h3>
+        <section className='logo-container'>
             <img className='logo' src={logo} alt='logo'/>
         </section>
     );

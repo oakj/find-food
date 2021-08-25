@@ -1,0 +1,5 @@
+.results-list-container {
+    border: solid;
+    /*flexbox properties relative to parent*/
+    flex: 1;
+}
