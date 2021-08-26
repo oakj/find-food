@@ -4,6 +4,7 @@ const foodController = require('../controllers/foodController.js');
 
 router.post(
     '/', 
+    foodController.addFood,
     (req, res) => {
         return res.status(200).send('food has been created!');
     }
@@ -20,7 +21,7 @@ router.get(
 // patch updates only the data sent via post request (put updates entire row in db)
 router.patch(
     '/:foodid', 
-    // ... middleware goes here
+    foodController.updateFood,
     (req, res) => {
         return res.status(200).send('food has been updated!');
     }
