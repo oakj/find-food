@@ -1,0 +1,14 @@
+.results-list-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 50px;
+    margin-left: 25px;
+}
+
+#addFood-btn {
+    margin-left: 10px;
+    height: 20px;
+}

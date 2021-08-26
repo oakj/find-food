@@ -1,10 +1,14 @@
+const express = require('express');
+const router = express.Router();
 const userController = require('../controllers/userController.js');
 
-app.post(
-    '/users', 
+router.post(
+    '/', 
+    userController.createUser,
     (req, res) => {
-        console.log('users endpoint hit');
-        // users middleware
-        res.status(200).send('users endpoint hit');
+        console.log('post request on /users endpoint hit');
+        return res.status(200).send('user has been created');
     }
 );
+
+module.exports = router;

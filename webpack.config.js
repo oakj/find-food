@@ -17,6 +17,11 @@ module.exports = {
             directory: path.join(__dirname, '/client'),
             // publicPath tells which endpoint the client server should request from
             publicPath: '/',
+        },
+        proxy: {
+            '/food': {
+                target: 'http://localhost:3000'
+            }
         }
     },
     module: {

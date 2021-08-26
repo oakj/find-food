@@ -1,5 +1,10 @@
 .results-list-container {
-    border: solid;
     /*flexbox properties relative to parent*/
     flex: 1;
+    
+}
+
+.results-section {
+    max-height: calc(100vh - 70px - 22px);
+    overflow-y: scroll;
 }

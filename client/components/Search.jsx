@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import magnify from '../assets/magnifying-glass.svg';
 import styles from '../styles/Search.css';
 
-export default function Search() {
-    const [input, setInput] = useState('');
-
+export default function Search(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('input: ', input);
+        props.setInput(document.querySelector('.search-input').value);
     }
 
     return (
         <section className='search-container'>
                 <div className="search-box">
+                    <div>find food near...</div>
                     <img className="search-img" src={magnify} alt="magnifying-glass"/>
                     <form onSubmit={handleSubmit}>
-                        <input className="search-input" value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="input an address"/>
+                        <input className="search-input" type="text" placeholder="input an address"/>
                     </form>
                 </div>
         </section>

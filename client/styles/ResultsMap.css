@@ -1,5 +1,6 @@
 .results-map-container {
-    border: solid blue;
-    /*flexbox properties relative to parent*/
-    height: 100%;
+    border: dashed 0.5px;
+
+    max-height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
 }
