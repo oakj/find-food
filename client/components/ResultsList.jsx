@@ -10,7 +10,7 @@ export default function ResultsList(props) {
     useEffect(() => {
         // need to parse through results and render an array of result components
         if (props.results.length) {
-            setResults(props.results.map(food => <Result key={food._id} {...food}/>));
+            setResults(props.results.map(food => <Result key={food._id} {...food} getFood={props.getFood}/>));
         }
     }, [props.results])
 

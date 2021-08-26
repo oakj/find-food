@@ -7,7 +7,7 @@ export default function ResultsPage() {
     const [input, setInput] = useState('');
     const [results, setResults] = useState([]);
 
-    const fetchResults = () => {
+    const getFood = () => {
         fetch(`/food/${input}`)
             .then(res => res.json())
             .then(data => {
@@ -20,14 +20,14 @@ export default function ResultsPage() {
     useEffect(() => {
         // nested fetch request in an if because we don't want the request to fire unless input is provided
         if (input) {
-            fetchResults();
+            getFood();
         }
     }, [input])
 
     return (
         <section>
             <ResultsHeader input={input} setInput={setInput}/>
-            <ResultsContainer input={input} results={results}/>
+            <ResultsContainer input={input} results={results} getFood={getFood}/>
         </section>
     );
 }

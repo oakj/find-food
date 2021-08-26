@@ -6,7 +6,7 @@ import styles from '../styles/ResultsContainer.css';
 export default function ResultsContainer(props) {
     return (
         <section className='results-container-container'>
-            <ResultsList results={props.results} input={props.input}/>
+            <ResultsList results={props.results} input={props.input} getFood={props.getFood}/>
             <ResultsMap results={props.results}/>
         </section>
     );
