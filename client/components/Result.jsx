@@ -16,12 +16,14 @@ export default function Result(props) {
     const [inputStreamingOn, setInputStreamingOn] = useState(props.streaming_on);
     const [inputImgUrl, setInputImgUrl] = useState(props.food_img_url);
 
-    const handleUpdate = (e, foodid) => {
+    const handleUpdate = async (e, foodid) => {
         e.preventDefault();
         console.log('update form submitted!')
         console.log('handleUpdate foodid', foodid);
         console.log('inputCost', inputCost);
-        // updateFood(foodid);
+        await updateFood(foodid);
+        window.alert('Food has been updated!');
+        props.getFood();
     }
 
     const updateFood = (foodid) => {
@@ -64,27 +66,8 @@ export default function Result(props) {
     }
 
     useEffect(() => {
-        console.log('does this useEffect inside Result.jsx happen?');
-        // moved setState below from handleUpdate function because setState is asynchronous and also relies on re-rendering of input before passing into updateFood function
-        // use setState to update input values to value of each input field (only invoke if input field has an input)
-        if (update) {
-            // these if checks only run if update is truthy because otherwise, React is trying to find a value of a null element            
-            if (document.querySelector('#foodNameInput').value) setInputName(document.querySelector('#foodNameInput').value);
-            console.log("document.querySelector('#foodCostInput').value before", document.querySelector('#foodCostInput').value);
-            console.log('inputCost before', inputCost);
-            if (document.querySelector('#foodCostInput').value) setInputCost(document.querySelector('#foodCostInput').value);
-            console.log("document.querySelector('#foodCostInput').value after", document.querySelector('#foodCostInput').value);
-            console.log('inputCost after', inputCost);
-            if (document.querySelector('#restaurantNameInput').value) setInputRestaurantName(document.querySelector('#restaurantNameInput').value);
-            if (document.querySelector('#restaurantAddressInput').value) setInputRestaurantAddress(document.querySelector('#restaurantAddressInput').value);
-            if (document.querySelector('#restaurantCityInput').value) setInputRestaurantCity(document.querySelector('#restaurantCityInput').value);
-            if (document.querySelector('#restaurantStateInput').value) setInputRestaurantState(document.querySelector('#restaurantStateInput').value);
-            if (document.querySelector('#restaurantZipInput').value) setInputRestaurantZip(document.querySelector('#restaurantZipInput').value);
-            if (document.querySelector('#featuredOnInput').value) setInputFeaturedOn(document.querySelector('#featuredOnInput').value);
-            if (document.querySelector('#streamingOnInput').value) setInputStreamingOn(document.querySelector('#streamingOnInput').value);
-            if (document.querySelector('#imgUrlInput').value) setInputImgUrl(document.querySelector('#imgUrlInput').value);
-        }
-    })
+        // console.log('does this useEffect inside Result.jsx happen?');
+    });
 
     return (
         <section>
@@ -107,16 +90,16 @@ export default function Result(props) {
                     {
                         update ?
                             <form className='form-container' onSubmit={(e) => handleUpdate(e, props._id)}>
-                                <div className='form-divs'>food name: <input id='foodNameInput' placeholder={props.name}/></div>
-                                <div className='form-divs'>food cost: <input id='foodCostInput' placeholder={props.cost}/></div>
-                                <div className='form-divs'>restaurant name: <input id='restaurantNameInput' placeholder={props.restaurant_name}/></div>
-                                <div className='form-divs'>restaurant address: <input id='restaurantAddressInput' placeholder={props.restaurant_address}/></div>
-                                <div className='form-divs'>restaurant city: <input id='restaurantCityInput' placeholder={props.restaurant_city}/></div>
-                                <div className='form-divs'>restaurant state: <input id='restaurantStateInput' placeholder={props.restaurant_state}/></div>
-                                <div className='form-divs'>restaurant zip: <input id='restaurantZipInput' placeholder={props.restaurant_zip}/></div>
-                                <div className='form-divs'>featured on: <input id='featuredOnInput' placeholder={props.featured_on}/></div>
-                                <div className='form-divs'>streaming on: <input id='streamingOnInput' placeholder={props.streaming_on}/></div>
-                                <div className='form-divs'>img url: <input id='imgUrlInput' placeholder={props.food_img_url}/></div>
+                                <div className='form-divs'>food name: <input onChange={(e) => setInputName(e.target.value)} placeholder={props.name}/></div>
+                                <div className='form-divs'>food cost: <input onChange={(e) => setInputCost(e.target.value)} placeholder={props.cost}/></div>
+                                <div className='form-divs'>restaurant name: <input onChange={(e) => setInputRestaurantName(e.target.value)} placeholder={props.restaurant_name}/></div>
+                                <div className='form-divs'>restaurant address: <input onChange={(e) => setInputRestaurantAddress(e.target.value)} placeholder={props.restaurant_address}/></div>
+                                <div className='form-divs'>restaurant city: <input onChange={(e) => setInputRestaurantCity(e.target.value)} placeholder={props.restaurant_city}/></div>
+                                <div className='form-divs'>restaurant state: <input onChange={(e) => setInputRestaurantState(e.target.value)} placeholder={props.restaurant_state}/></div>
+                                <div className='form-divs'>restaurant zip: <input onChange={(e) => setInputRestaurantZip(e.target.value)} placeholder={props.restaurant_zip}/></div>
+                                <div className='form-divs'>featured on: <input onChange={(e) => setInputFeaturedOn(e.target.value)} placeholder={props.featured_on}/></div>
+                                <div className='form-divs'>streaming on: <input onChange={(e) => setInputStreamingOn(e.target.value)} placeholder={props.streaming_on}/></div>
+                                <div className='form-divs'>img url: <input onChange={(e) => setInputImgUrl(e.target.value)} placeholder={props.food_img_url}/></div>
                                 <button type='submit'>Submit Updates</button>
                             </form>
                         :
