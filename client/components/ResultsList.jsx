@@ -16,7 +16,7 @@ export default function ResultsList(props) {
 
     return (
         <section className='results-list-container'>
-            <ResultsListHeader />
+            <ResultsListHeader input={props.input}/>
             {/* render array of result components below */}
             <section className='results-section'>
                 {results.length ? results : null}

@@ -27,7 +27,7 @@ export default function ResultsPage() {
     return (
         <section>
             <ResultsHeader input={input} setInput={setInput}/>
-            <ResultsContainer results={results}/>
+            <ResultsContainer input={input} results={results}/>
         </section>
     );
 }

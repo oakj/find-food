@@ -5,6 +5,6 @@
 }
 
 .results-section {
-    max-height: calc(100vh - 70px - 22px);
+    max-height: calc(100vh - 70px - 50px);
     overflow-y: scroll;
 }
