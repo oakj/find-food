@@ -2,6 +2,13 @@ const { v4: uuidv4 } = require('uuid');
 const db = require('../../db/db.js');
 const foodController = {};
 
+// create new google maps client (needed to make requsts to google maps api)
+const googleMapsClient = require('@google/maps').createClient({
+    key: process.env.GOOGLE_MAPS_API_KEY,
+    // Promise property is required below to use .asPromise() syntax when making a request to google maps api
+    Promise: Promise
+});
+
 foodController.addFood = (req, res, next) => {
     // generate food id using uuid
     const foodid = uuidv4();
@@ -27,19 +34,22 @@ foodController.addFood = (req, res, next) => {
         })
 }
 
-foodController.getFood = (req, res, next) => {
-    // query db for food nearby
+foodController.getFood = async (req, res, next) => {
+    console.log('we enter foodController.getFood');
+    // deconstruct (for sanitization) req.params to get location
     const { location } = req.params;
-    console.log('req.params', req.params);
+    // console.log('req.params', req.params);
+    // query db for food nearby
     const values = [location];
     const query = `
         SELECT *
         FROM food
         WHERE restaurant_city = $1`;
-    db.query(query, values)
+    await db.query(query, values)
         .then(response => {
-            console.log('res', response);
+            // console.log('res.rows', response.rows);
             res.locals.food = response.rows;
+            console.log('getFood response.rows[0]', res.locals.food[0]);
             return next();
         })
         .catch(error => {
@@ -48,6 +58,20 @@ foodController.getFood = (req, res, next) => {
                 message: error
             });
         })
+    // make request to google maps api
+    // console.log('when does this happen?');
+    // await googleMapsClient.geocode({ address: location  }).asPromise()
+    //     .then(res => {
+    //         console.log('google maps res:\n', res.json);
+    //         return res.json();
+    //     })
+    //     .then(data => {
+    //         console.log('google maps data:\n', data.results);
+    //     })
+    //     .catch(error => next({
+    //         log: error,
+    //         message: { err: error }
+    //     }))
 }
 
 foodController.updateFood = (req, res, next) => {
@@ -67,7 +91,7 @@ foodController.updateFood = (req, res, next) => {
     // make db query...
     db.query(query, values)
         .then(response => {
-            console.log('update response', response);
+            console.log('update response success', response);
             return next();
         })
         .catch(error => {

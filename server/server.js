@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+// require dotenv to use .env with process.env
+require('dotenv').config()
+
 // require routers here
 const userRouter = require('./routers/userRouter.js');
 const foodRouter = require('./routers/foodRouter.js');
